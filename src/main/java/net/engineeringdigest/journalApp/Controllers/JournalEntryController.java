@@ -85,6 +85,7 @@ public class JournalEntryController {
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
+    // controller for deleting a journal entry
     @DeleteMapping("id/{myId}")
     public ResponseEntity<?> deleteEntrybyId(@PathVariable ObjectId myId){
 

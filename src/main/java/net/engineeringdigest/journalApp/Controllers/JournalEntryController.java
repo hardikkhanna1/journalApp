@@ -22,6 +22,7 @@ public class JournalEntryController {
     @Autowired
     private UserService userService;
 
+    // This is for creating a user
     @PostMapping
     public ResponseEntity<Journal> addEntry(@RequestBody Journal newEntry){
         String username = SecurityContextHolder.getContext().getAuthentication().getName();

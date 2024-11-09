@@ -93,6 +93,7 @@ public class JournalEntryController {
 
         User user = userService.findByUserName(username);
 
+        // Adding a comment
         List<Journal> JournalList = user.getJournalEntries().stream().filter(j -> j.getId().equals(myId)).collect(Collectors.toList());
 
         if(!JournalList.isEmpty()) {

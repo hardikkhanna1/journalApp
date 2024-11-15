@@ -1,1 +1,1 @@
-This is backend of a journal app built with springboot.
+This is backend of a journal app built with springboot and java.

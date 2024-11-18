@@ -2,9 +2,9 @@ package net.engineeringdigest.journalApp.Controllers;
 
 
 import net.engineeringdigest.journalApp.Entity.User;
-import net.engineeringdigest.journalApp.Repository.UserRepository;
+import net.engineeringdigest.journalApp.Services.GetResponseFromWeatherAPI;
 import net.engineeringdigest.journalApp.Services.UserService;
-import org.bson.types.ObjectId;
+import net.engineeringdigest.journalApp.api.response.WeatherEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,15 +12,15 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.Optional;
-
 @RestController
 @RequestMapping("/user")
 public class UserController {
 
     @Autowired
     private UserService userservice;
+
+    @Autowired
+    private GetResponseFromWeatherAPI getResponseFromWeatherAPI ;
 
 
 //    @GetMapping("/id/{username}")
@@ -66,6 +66,20 @@ public class UserController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
+
+    }
+
+    @GetMapping
+    public ResponseEntity<String> showweather(){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+
+        WeatherEntity weather = getResponseFromWeatherAPI.getResponse();
+
+        if(weather!=null){
+            return new ResponseEntity<>("Hi "+ username + " the current temp in your area is "+ weather.getCurrent().getTemperature()+" but it feels like "+weather.getCurrent().getFeelslike(), HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 
     }
 }

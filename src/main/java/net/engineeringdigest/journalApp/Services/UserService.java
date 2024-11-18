@@ -8,9 +8,13 @@ import net.engineeringdigest.journalApp.Repository.JournalEntryRepository;
 import net.engineeringdigest.journalApp.Repository.UserRepository;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.Arrays;
 import java.util.List;
@@ -66,6 +70,7 @@ public class UserService {
     public void deletebyUserName(String username){
         userRepository.deleteByusername(username);
     }
+
 
 
 }

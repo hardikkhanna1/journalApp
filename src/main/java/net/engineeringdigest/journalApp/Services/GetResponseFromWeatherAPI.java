@@ -3,6 +3,7 @@ package net.engineeringdigest.journalApp.Services;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import net.engineeringdigest.journalApp.api.response.WeatherEntity;
+import net.engineeringdigest.journalApp.cache.AppCache;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -21,13 +22,17 @@ public class GetResponseFromWeatherAPI {
     @Autowired
     private RestTemplate restTemplate;
 
+    @Autowired
+    private AppCache appCache = new AppCache();
+
     @Value("${weather.api.key}")
     private String apiKey ;
 
-    private final String baseURL = "http://api.weatherstack.com/current";
 
     public WeatherEntity getResponse() {
-        String apiURL = baseURL + "?access_key=" + apiKey + "&query=Mumbai";
+
+        String baseURL = appCache.getConfigurations().get("WEATHER_API_URL");
+        String apiURL = baseURL.replace("<api_key>",apiKey).replace("<city","Mumbai");
 
         ResponseEntity<WeatherEntity> response = restTemplate.exchange(apiURL, HttpMethod.GET, null, WeatherEntity.class);
         WeatherEntity body = response.getBody();

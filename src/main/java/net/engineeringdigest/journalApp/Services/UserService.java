@@ -1,6 +1,4 @@
 package net.engineeringdigest.journalApp.Services;
-
-
 import lombok.extern.slf4j.Slf4j;
 import net.engineeringdigest.journalApp.Entity.Journal;
 import net.engineeringdigest.journalApp.Entity.User;

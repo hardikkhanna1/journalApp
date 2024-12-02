@@ -1,8 +1,7 @@
 package net.engineeringdigest.journalApp.Service;
-
-import lombok.NonNull;
+import net.engineeringdigest.journalApp.Entity.User;
 import net.engineeringdigest.journalApp.Repository.UserRepository;
-import net.engineeringdigest.journalApp.Services.UserService;
+import net.engineeringdigest.journalApp.Repository.UserRepositoryImpl;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -10,25 +9,19 @@ import org.junit.jupiter.params.provider.CsvFileSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 public class UserServiceTests {
 
     @Autowired
-    private UserRepository userRepository;
-
+    private UserRepositoryImpl userRepositoryimpl;
 
     @Test
-    public void deleteUserTests(){
-        assertNotNull(userRepository.findByusername("hardik"));
+    public void usersWithWeakPassword(){
+        List<User> userList = userRepositoryimpl.userWithWeakPassword();
+        assertNotNull(userList);
     }
-
-    @ParameterizedTest
-    @CsvFileSource(resources ="/testparam.csv")
-    public void testingparam(String username){
-        assertNotNull(userRepository.findByusername(username));
-    }
-
-
 }

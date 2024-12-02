@@ -28,7 +28,6 @@ public class GetResponseFromWeatherAPI {
     @Value("${weather.api.key}")
     private String apiKey ;
 
-
     public WeatherEntity getResponse() {
 
         String baseURL = appCache.getConfigurations().get("WEATHER_API_URL");

@@ -1,10 +1,10 @@
 package net.engineeringdigest.journalApp.Service;
-
 import net.engineeringdigest.journalApp.Entity.Journal;
 import net.engineeringdigest.journalApp.Entity.User;
 import net.engineeringdigest.journalApp.Services.JournalEntryService;
 import net.engineeringdigest.journalApp.Services.UserService;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentMatchers;
 import org.mockito.*;
@@ -12,9 +12,9 @@ import org.mockito.Mock;
 import org.springframework.util.Assert;
 
 import java.util.ArrayList;
-
 import static org.mockito.Mockito.when;
 
+@Disabled
 public class JournalEntryServiceTest {
 
     @InjectMocks

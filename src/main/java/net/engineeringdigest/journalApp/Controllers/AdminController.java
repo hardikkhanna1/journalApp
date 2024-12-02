@@ -1,5 +1,4 @@
 package net.engineeringdigest.journalApp.Controllers;
-
 import net.engineeringdigest.journalApp.Entity.User;
 import net.engineeringdigest.journalApp.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

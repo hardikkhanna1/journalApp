@@ -2,6 +2,7 @@ package net.engineeringdigest.journalApp.Controllers;
 
 
 import net.engineeringdigest.journalApp.Entity.User;
+import net.engineeringdigest.journalApp.Repository.UserRepositoryImpl;
 import net.engineeringdigest.journalApp.Services.GetResponseFromWeatherAPI;
 import net.engineeringdigest.journalApp.Services.UserService;
 import net.engineeringdigest.journalApp.api.response.WeatherEntity;
@@ -11,6 +12,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/user")
@@ -22,17 +25,8 @@ public class UserController {
     @Autowired
     private GetResponseFromWeatherAPI getResponseFromWeatherAPI ;
 
-
-//    @GetMapping("/id/{username}")
-//    public ResponseEntity<User> getUserId(@PathVariable String username){
-//
-//        User user = userservice.findByUserName(username);
-//
-//        if(user!=null) {
-//            return new ResponseEntity<>(user, HttpStatus.OK);
-//        }
-//        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//    }
+    @Autowired
+    private UserRepositoryImpl userRepositoryimpl;
 
     @DeleteMapping
     public ResponseEntity<User> deleteUserbyusername() {
@@ -71,6 +65,7 @@ public class UserController {
 
     @GetMapping
     public ResponseEntity<String> showweather(){
+
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
 

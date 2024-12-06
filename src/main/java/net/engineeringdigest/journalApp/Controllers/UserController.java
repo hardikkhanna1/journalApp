@@ -1,6 +1,4 @@
 package net.engineeringdigest.journalApp.Controllers;
-
-
 import net.engineeringdigest.journalApp.Entity.User;
 import net.engineeringdigest.journalApp.Repository.UserRepositoryImpl;
 import net.engineeringdigest.journalApp.Services.GetResponseFromWeatherAPI;
@@ -13,7 +11,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 @RestController
 @RequestMapping("/user")
@@ -43,7 +40,6 @@ public class UserController {
 
     @PutMapping
     public ResponseEntity<User> updateUser(@RequestBody User newUser) {
-
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
@@ -75,6 +71,5 @@ public class UserController {
             return new ResponseEntity<>("Hi "+ username + " the current temp in your area is "+ weather.getCurrent().getTemperature()+" but it feels like "+weather.getCurrent().getFeelslike(), HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-
     }
 }

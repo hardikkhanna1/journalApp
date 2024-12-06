@@ -13,10 +13,9 @@ public class UserRepositoryImpl {
     @Autowired
     public MongoTemplate mongoTemplate;
 
-    public List<User> userWithWeakPassword(){
+    public List<User> userWithNotificationTrue(){
         Query query = new Query();
-        query.addCriteria(Criteria.where("password").not().regex("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$\n"));
-
+        query.addCriteria(Criteria.where("optForNotification").is(true));
         return mongoTemplate.find(query,User.class);
     }
 }

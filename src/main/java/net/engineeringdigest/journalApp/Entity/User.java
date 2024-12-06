@@ -24,6 +24,11 @@ public class User {
     @NonNull
     private String password;
 
+    @NonNull
+    private String email;
+
+    private Boolean optForNotification;
+
     @DBRef
     private List<Journal> journalEntries = new ArrayList<>();
 

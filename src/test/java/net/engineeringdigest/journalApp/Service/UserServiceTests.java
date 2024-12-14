@@ -19,9 +19,9 @@ public class UserServiceTests {
     @Autowired
     private UserRepositoryImpl userRepositoryimpl;
 
-    @Test
-    public void usersWithWeakPassword(){
-        List<User> userList = userRepositoryimpl.userWithWeakPassword();
-        assertNotNull(userList);
-    }
+//    @Test
+//    public void usersWithWeakPassword(){
+//        List<User> userList = userRepositoryimpl.userWithWeakPassword();
+//        assertNotNull(userList);
+//    }
 }

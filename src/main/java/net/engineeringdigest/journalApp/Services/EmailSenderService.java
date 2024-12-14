@@ -18,5 +18,4 @@ public class EmailSenderService {
         mail.setText(body);
         javaMailSender.send(mail);
     }
-
 }

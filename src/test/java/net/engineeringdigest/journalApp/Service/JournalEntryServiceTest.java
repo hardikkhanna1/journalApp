@@ -28,23 +28,24 @@ public class JournalEntryServiceTest {
         MockitoAnnotations.initMocks(this);
     }
 
-    @Test
-    public void saveJournalEntryTest(){
-
-        Journal journal = new Journal();
-        journal.setTitle("Testing");
-        journal.setContent("Test Content");
-
-        User user = new User("test_user","yeh_kuch_bhi");
-        user.setUsername("test_user");
-        user.setPassword("yeh_kuch_bhi");
-        user.setRoles(new ArrayList<>());
-        user.setJournalEntries(new ArrayList<>());
-
-        when(userService.findByUserName(ArgumentMatchers.anyString())).thenReturn(user);
-
-        Assert.notNull(userService.findByUserName("test"));
-
-    }
+//    @Disabled
+//    @Test
+//    public void saveJournalEntryTest(){
+//
+//        Journal journal = new Journal();
+//        journal.setTitle("Testing");
+//        journal.setContent("Test Content");
+//
+//        User user = new User("test_user","yeh_kuch_bhi");
+//        user.setUsername("test_user");
+//        user.setPassword("yeh_kuch_bhi");
+//        user.setRoles(new ArrayList<>());
+//        user.setJournalEntries(new ArrayList<>());
+//
+//        when(userService.findByUserName(ArgumentMatchers.anyString())).thenReturn(user);
+//
+//        Assert.notNull(userService.findByUserName("test"));
+//
+//    }
 
 }

@@ -16,7 +16,7 @@ public class PatchingNotificationScheduller {
     @Autowired
     private EmailSenderService emailSenderService ;
 
-    @Scheduled(cron = "0 0/1 * 1/1 * ?")
+    @Scheduled(cron = "0 0 12 1 1 ?")
     public void sendGreetingsToEveryUser(){
 
         for (User user : userService.getAllUsers()) {

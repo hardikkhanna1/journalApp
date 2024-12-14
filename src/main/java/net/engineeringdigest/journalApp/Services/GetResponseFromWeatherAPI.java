@@ -25,19 +25,31 @@ public class GetResponseFromWeatherAPI {
     @Autowired
     private AppCache appCache = new AppCache();
 
+    @Autowired
+    private RedisService redisService ;
+
     @Value("${weather.api.key}")
     private String apiKey ;
 
     public WeatherEntity getResponse() {
 
-        String baseURL = appCache.getConfigurations().get("WEATHER_API_URL");
-        String apiURL = baseURL.replace("<api_key>",apiKey).replace("<city","Mumbai");
+        String city = "Mumbai";    // Currently for testing purpose only
 
-        ResponseEntity<WeatherEntity> response = restTemplate.exchange(apiURL, HttpMethod.GET, null, WeatherEntity.class);
-        WeatherEntity body = response.getBody();
+        WeatherEntity value = redisService.getValue("Weather_for_" + city, WeatherEntity.class);
+        if(value != null){
+            return value;
+        }
+        else{
+            String baseURL = appCache.getConfigurations().get("WEATHER_API_URL");
+            String apiURL = baseURL.replace("<api_key>",apiKey).replace("<city",city);
 
-        if(body!=null){
-            return body;
+            ResponseEntity<WeatherEntity> response = restTemplate.exchange(apiURL, HttpMethod.GET, null, WeatherEntity.class);
+            WeatherEntity body = response.getBody();
+
+            if(body!=null){
+                redisService.setValue("Weather_for_"+city,body,300l);
+                return body;
+            }
         }
         return null;
     }
